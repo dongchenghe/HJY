@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>PhoneSell</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  	<!-- 字符集过滤器 -->
+    <filter>
+    <filter-name>charset_filter</filter-name>
+    <filter-class>pers.hjy.filter.CharsetFilter</filter-class>
+    <init-param>
+      <param-name>charsetString</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+     </filter>
+    <filter-mapping>
+    <filter-name>charset_filter</filter-name>
+    <url-pattern>/*</url-pattern>
+  	</filter-mapping>
+  	<!-- 用户登录过滤器 -->
+  	<filter>
+    <filter-name>userlogin_filter</filter-name>
+    <filter-class>pers.hjy.filter.UserLoginFilter</filter-class>
+    <init-param>
+      <param-name>do_jsp</param-name>
+      <param-value>ShopingCarServlet,BalanceServlet,pay.jsp,personal.jsp,shopingCar.jsp</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>userlogin_filter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  	<!-- 后台登录过滤器 -->
+  	  <filter>
+    <filter-name>managerlogin_filter</filter-name>
+    <filter-class>pers.hjy.filter.ManageLoginFilter</filter-class>
+    <init-param>
+      <param-name>do_jsp</param-name>
+      <param-value>managerindex.jsp</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>managerlogin_filter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  	
+  <session-config>
+    <session-timeout>10</session-timeout>
+  </session-config>
+  <context-param>
+    <param-name>driver</param-name>
+    <param-value>oracle.jdbc.driver.OracleDriver</param-value>
+  </context-param>
+  <context-param>
+    <param-name>url</param-name>
+    <param-value>jdbc:oracle:thin:@127.0.0.1:1521:orcl</param-value>
+  </context-param>
+  <context-param>
+    <param-name>user</param-name>
+    <param-value>hjy</param-value>
+  </context-param>
+  <context-param>
+    <param-name>pwd</param-name>
+    <param-value>hjy123</param-value>
+  </context-param>
+</web-app>

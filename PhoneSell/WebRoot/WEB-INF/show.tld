@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    
+  <description>JSTL 1.1 core library</description>
+  <display-name>JSTL core</display-name>
+  <tlib-version>1.1</tlib-version>
+  <short-name>show</short-name>
+  <uri>http://www.6013.com/show</uri>
+
+  <tag>
+    <description>
+        从数据库查询包含关键字的所有用户
+    </description>
+    <name>goodsList</name>
+    <tag-class>pers.hjy.util.GoodsListTag</tag-class>
+    <!-- 标签体内容是否有 -->
+    <body-content>empty</body-content>
+    <attribute>
+        <description>
+       需要查询用户名包含的关键字
+        </description>
+          <!--属性名 -->
+        <name>keyword</name>
+        <!-- 是否为必要属性 -->
+        <required>false</required>
+        <!-- 能不能用表达式,java表达式，el表达式等 -->
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <description>
+        从数据库查询包含关键字的所有用户
+    </description>
+    <name>orderteil</name>
+    <tag-class>pers.hjy.util.OrderTeilTag</tag-class>
+    <!-- 标签体内容是否有 -->
+    <body-content>empty</body-content>
+    <attribute>
+        <description>
+       	订单id
+        </description>
+          <!--属性名 -->
+        <name>order_id</name>
+        <!-- 是否为必要属性 -->
+        <required>false</required>
+        <!-- 能不能用表达式,java表达式，el表达式等 -->
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+<tag>
+    <description>
+        用户个人信息展现及修改
+    </description>
+    <name>personalInfo</name>
+    <tag-class>pers.hjy.util.PersonalInfoChangeTag</tag-class>
+    <!-- 标签体内容是否有 -->
+    <body-content>empty</body-content>
+    <attribute>
+        <description>
+    	 暂无属性描述
+        </description>
+          <!--属性名 -->
+        <name>keyword</name>
+        <!-- 是否为必要属性 -->
+        <required>false</required>
+        <!-- 能不能用表达式,java表达式，el表达式等 -->
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+
+<tag>
+    <description>
+        用户个人信息展现及修改
+    </description>
+    <name>pwdChange</name>
+    <tag-class>com.icss.csetc.tag.PwdChangeTag</tag-class>
+    <!-- 标签体内容是否有 -->
+    <body-content>empty</body-content>
+    <attribute>
+        <description>
+    	 暂无属性描述
+        </description>
+          <!--属性名 -->
+        <name>keyword</name>
+        <!-- 是否为必要属性 -->
+        <required>false</required>
+        <!-- 能不能用表达式,java表达式，el表达式等 -->
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+<tag>
+    <description>
+        用户个人信息展现及修改
+    </description>
+    <name>receiveAddrManager</name>
+    <tag-class>com.icss.csetc.tag.ReceiveAddrManagerTag</tag-class>
+    <!-- 标签体内容是否有 -->
+    <body-content>empty</body-content>
+    <attribute>
+        <description>
+    	 暂无属性描述
+        </description>
+          <!--属性名 -->
+        <name>keyword</name>
+        <!-- 是否为必要属性 -->
+        <required>false</required>
+        <!-- 能不能用表达式,java表达式，el表达式等 -->
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+<tag>
+    <description>
+        用户个人信息展现及修改
+    </description>
+    <name>msgmanager</name>
+    <tag-class>com.icss.csetc.tag.MsgManagerTag</tag-class>
+    <!-- 标签体内容是否有 -->
+    <body-content>empty</body-content>
+    <attribute>
+        <description>
+    	 暂无属性描述
+        </description>
+          <!--属性名 -->
+        <name>keyword</name>
+        <!-- 是否为必要属性 -->
+        <required>false</required>
+        <!-- 能不能用表达式,java表达式，el表达式等 -->
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+
+</taglib>

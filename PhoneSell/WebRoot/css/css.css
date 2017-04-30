@@ -1,0 +1,242 @@
+@charset "utf-8";
+/* CSS Document */
+#mian{
+		text-align:center;
+		margin:0 auto;
+		border:1px solid #999;
+		width:1200px;
+		z-index:2;
+		background:#FFF;
+		}
+		.top{
+			width:1200px;
+			height:40px;
+			background:#F2F2F2;
+			margin:0 auto;
+		}
+		.top a{
+			font-size:17px; 
+			text-decoration:none
+		}
+		.top-left{
+			margin:0px 100px 0px 0px;
+			z-index:2;
+			float:left;
+			line-height:40px;
+		}
+		.top-lefta{
+			font-size:17px; 
+			text-decoration:none;
+			font-weight:bold;
+			color: #FD6600;
+			}
+		.top-right{
+			margin:0px 0px 0px 200px;
+			z-index:3;
+			float:right;
+			line-height:40px;
+		}
+		.top1{
+			width:100%;
+			height:80px;
+		}
+		.top1-1{
+			width:230px;
+			height:80px;
+			float:left;
+		}
+		.top1-2{
+			height:80px;
+			line-height:80px;
+			float:left;
+		}
+		.top1-3{
+			height:80px;
+			width:300px;
+			float:right;
+		}
+		.topul{
+			height:80px;
+			list-style:none;
+			margin:0px;
+			padding:0px;
+		}
+		.topli{
+			height:80px;
+			width:130px;
+			line-height:80px;
+			float:left;
+			margin:0px;
+			padding:0px;
+		}
+		.topli a{ 
+			font-size:20px;
+			text-decoration:none;
+		}
+		.top1-2 li:hover{ background:#0D9DD2;}
+		.lifirst{
+			height:50px; 
+			background:#237B7B; 
+			line-height:50px;
+			color:#0FC; 
+			font-weight:bold;
+		}
+		/*中部*/
+		.center{
+			width:1200px;
+			height:500px;
+			border:1px solid #666;
+		}
+		.daohang{
+			height:500px;
+			width:230px;
+			float:left;
+		}
+		.daohang li:hover{ background:#9C0;}
+		.daoli{
+			height:40px;
+			line-height:40px;
+			background:#E1F2F2;	
+		}
+		.dao-right{
+			height:492px;
+			width:967px;
+			float:right;
+		}
+		.daoli a:link{ text-decoration:none;}
+		.daoli a:hover{font-size:22px; color:#00C;}
+		.center2{
+			width:1200px;
+			height:320px;
+			/*border:1px solid #096;*/
+			margin-top:10px;}
+		.center2-left{
+			width:230px;
+			height:300px;
+			float:left;
+		}
+		.center2-leftli{
+			text-align:left;
+			height:40px;
+			line-height:40px;
+			background:#E1F2F2;
+			margin-left:10px;
+		}
+		.center2-right{
+			width:948px;
+			height:300px;
+			float:right;
+			padding:0px;
+		}
+		.center2-right1{
+			width:200px;
+			height:275px;
+			float:left;
+			border:1px solid #096;
+			margin:7px 7px 0px 7px;
+		}
+		.center2-right2{
+			width:250px;
+			height:290px;
+			float:right;
+			border:1px solid #F00;
+			margin-right:20px;
+			margin-top:20px;
+		}
+		.center2-right1:hover{border:3px solid #83C44E;}
+		.mony{
+			width:200px;
+			margin:0px;
+			text-align:center;
+			font-size:18px;
+			font:Verdana, Geneva, sans-serif;
+			color:#F60;
+			margin-top:10px;
+		}
+		.name{
+			width:200px;
+			margin:5px 0px;
+			text-align:center;
+			color:#212121;
+		}
+		.whyul{
+			height:80px;
+			list-style:none;
+			margin:0px;
+			padding:0px;
+		}
+		.whyli{
+			height:40px;
+			line-height:40px;
+			text-align:left;
+			list-style-position:inside;
+		}
+		.center3{
+			width:1200px;
+			height:430px;
+			border-top:3px solid #096;
+			margin-top:10px;
+		}
+		a { text-decoration:none;}
+		.lei{
+			width:500px;
+			height:50px;
+			font-size:20px;
+			text-align:left;
+			line-height:50px;
+			margin:0px;
+			float:left;
+			margin-left:15px;}
+		.center3-top{
+			width:1200px;
+			height:50px;
+			margin:0px;}
+		.center3-div{
+			width:230px;
+			height:350px;
+			border:1px solid #F00;
+			float:left;
+			margin-left:6px;
+		}
+		.center4{
+			width:1200px;
+			height:380px;
+			border-top:3px solid #0CC;
+			margin-top:10px;
+		}
+		.center4-div{
+			width:230px;
+			height:300px;
+			border:1px solid #F69;
+			float:left;
+			margin-left:6px;
+		}
+		.dip{
+			width:1200px;
+			height:110px;
+			margin-top:10px;
+		}
+		table.o td{
+			text-align:center;
+			color:#C63;
+			padding:0px;
+			margin:0px;
+		}
+		.lan{
+			position:fixed;
+			width:50px;
+			height:50px;
+			margin-left:1280px;
+			margin-top:500px;
+			line-height:60px;
+		}
+		.top-p{
+			background:#666;
+			height:50px;
+			width:50px; 
+			font-size:20px;
+			color:#CCC;
+			margin:0px;
+		}
+
+
