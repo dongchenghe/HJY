@@ -21,10 +21,10 @@ import pers.hjy.util.Pager;
 
 
 /**
- * 管理所有的商品的servlet
+ * 管理所有的用户的servlet
  */
-@WebServlet("/ManagerGoodsServlet")
-public class ManagerGoodsServlet extends HttpServlet {
+@WebServlet("/ManagerUserServlet")
+public class ManagerUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminInterfaceService service = new AdminInterfaceImplService();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,10 +41,23 @@ public class ManagerGoodsServlet extends HttpServlet {
 		if(pageSizeStr!=null&&!pageSizeStr.equals("")){
 			pageSize = Integer.parseInt(pageSizeStr);//显示页面显示多少条数据
 		}
-		Pager<Map<String, Object>> goods = service.queryGooodsList(map, pageNum, pageSize);
+		Pager<Map<String, Object>> users = service.queryUserList(map, pageNum, pageSize);
 		// 获取查询到的订单数据
-		request.getSession().setAttribute("goods", goods);
-		response.sendRedirect("dba/goodInfo.jsp");
+		request.getSession().setAttribute("users", users);
+		String setname = request.getParameter("setname");
+		if(setname!=null){
+			if(setname.equals("password")){
+				response.sendRedirect("dba/setUserPassword.jsp");
+				return;
+			}else if(setname.equals("is_valid")){
+				response.sendRedirect("dba/setUserValid.jsp");
+				return;
+			}
+			response.sendRedirect("dba/checkAllUser.jsp");
+		}else{
+			response.sendRedirect("dba/checkAllUser.jsp");
+		}
+		
 	}
 
 	/**

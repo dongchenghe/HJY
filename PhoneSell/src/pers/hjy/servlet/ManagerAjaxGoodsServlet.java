@@ -21,72 +21,72 @@ import pers.hjy.util.Pager;
 /**
  * 后台订单的servlet
  */
-@WebServlet("/ManagerAjaxOrdersServlet")
-public class ManagerAjaxOrdersServlet extends HttpServlet {
+@WebServlet("/ManagerAjaxGoodsServlet")
+public class ManagerAjaxGoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminInterfaceService service = new AdminInterfaceImplService(); 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		// 获取标识参数
 		Map map = new HashMap<String, Object>();
-		String order_state = request.getParameter("order_state");
-		String user_id = request.getParameter("user_id");
-		String order_id = request.getParameter("order_id");
-		String create_date1 = request.getParameter("create_date1");
-		String create_date2 = request.getParameter("create_date2");
-		String kddh = request.getParameter("kddh");
-		if(order_state!=null){
-			map.put("order_state", order_state);
-			request.getSession().setAttribute("order_state", order_state);
+		String goods_name = request.getParameter("goods_name");
+		String goods_color = request.getParameter("goods_color");
+		String kc1 = request.getParameter("kc1");
+		String kc2 = request.getParameter("kc2");
+		String sell_count1 = request.getParameter("sell_count1");
+		String sell_count2 = request.getParameter("sell_count2");
+		if(goods_name!=null){
+			map.put("goods_name", goods_name);
+			request.getSession().setAttribute("goods_name", goods_name);
 		}else{
-			String test = (String) request.getSession().getAttribute("order_state");
+			String test = (String) request.getSession().getAttribute("goods_name");
 			if(test!=null && !test.trim().equals("")){
-				map.put("order_state", test);
+				map.put("goods_name", test);
 			}
 		}
-		if(user_id!=null){
-			map.put("user_id", user_id);
-			request.getSession().setAttribute("user_id", user_id);
+		if(goods_color!=null){
+			map.put("goods_color", goods_color);
+			request.getSession().setAttribute("goods_color", goods_color);
 		}else{
-			String test = (String) request.getSession().getAttribute("user_id");
+			String test = (String) request.getSession().getAttribute("goods_color");
 			if(test!=null && !test.trim().equals("")){
-				map.put("user_id", test);
+				map.put("goods_color", test);
 			}
 		}
-		if(order_id!=null){
-			map.put("order_id", order_id);
-			request.getSession().setAttribute("order_id", order_id);
+		if(kc1!=null){
+			map.put("kc1", kc1);
+			request.getSession().setAttribute("kc1", kc1);
 		}else{
-			String test = (String) request.getSession().getAttribute("order_id");
+			String test = (String) request.getSession().getAttribute("kc1");
 			if(test!=null && !test.trim().equals("")){
-				map.put("order_id", test);
+				map.put("kc1", test);
 			}
 		}
-		if(create_date1!=null){
-			map.put("create_date1", create_date1);
-			request.getSession().setAttribute("create_date1", create_date1);
+		if(kc2!=null){
+			map.put("kc2", kc2);
+			request.getSession().setAttribute("kc2", kc2);
 		}else{
-			String test = (String) request.getSession().getAttribute("create_date1");
+			String test = (String) request.getSession().getAttribute("kc2");
 			if(test!=null && !test.trim().equals("")){
-				map.put("create_date1", test);
+				map.put("kc2", test);
 			}
 		}
-		if(create_date2!=null){
-			map.put("create_date2", create_date2);
-			request.getSession().setAttribute("create_date2", create_date2);
+		if(sell_count1!=null){
+			map.put("sell_count1", sell_count1);
+			request.getSession().setAttribute("sell_count1", sell_count1);
 		}else{
-			String test = (String) request.getSession().getAttribute("create_date2");
+			String test = (String) request.getSession().getAttribute("sell_count1");
 			if(test!=null && !test.trim().equals("")){
-				map.put("create_date2", test);
+				map.put("sell_count1", test);
 			}
 		}
-		if(kddh!=null){
-			map.put("kddh", kddh);
-			request.getSession().setAttribute("kddh", kddh);
+		if(sell_count2!=null){
+			map.put("sell_count2", sell_count2);
+			request.getSession().setAttribute("sell_count2", sell_count2);
 		}else{
-			String test = (String) request.getSession().getAttribute("kddh");
+			String test = (String) request.getSession().getAttribute("sell_count2");
 			if(test!=null && !test.trim().equals("")){
-				map.put("kddh", test);
+				map.put("sell_count2", test);
 			}
 		}
 		int pageNum = Constant.DEFAULT_PAGE_NUM;
@@ -99,9 +99,9 @@ public class ManagerAjaxOrdersServlet extends HttpServlet {
 		if(pageSizeStr!=null&&!pageSizeStr.equals("")){
 			pageSize = Integer.parseInt(pageSizeStr);//显示页面显示多少条数据
 		}
-		Pager<Map<String, Object>> orders = service.queryOrderList(map, pageNum, pageSize);
+		Pager<Map<String, Object>> goods = service.queryGooodsList(map, pageNum, pageSize);
 		// 获取查询到的订单数据
-		request.getSession().setAttribute("orders", orders);
+		request.getSession().setAttribute("goods", goods);
 	}
 
 	/**

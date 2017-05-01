@@ -16,10 +16,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>Insert title here</title>
 <script type="text/javascript">
 // 当前第几页数据
-var currentPage = "${goods.currentPage}";
+var currentPage = "${users.currentPage}";
 
 // 总页数
-var totalPage = "${goods.totalPage}";
+var totalPage = "${users.totalPage}";
 
 function submitForm(actionUrl){
 	xmlHttp.open("POST", actionUrl, true);
@@ -41,7 +41,7 @@ function firstPage(){
 		layer.alert("已经是第一页数据");
 		return false;
 	}else{
-		submitForm("ManagerAjaxGoodsServlet?pageNum=1");
+		submitForm("ManagerAjaxUserServlet?pageNum=1");
 		return true;
 	}
 }
@@ -52,7 +52,7 @@ function nextPage(){
 		layer.alert("已经是最后一页数据");
 		return false;
 	}else{
-		submitForm("ManagerAjaxGoodsServlet?pageNum=" + (parseInt(currentPage)+1));
+		submitForm("ManagerAjaxUserServlet?pageNum=" + (parseInt(currentPage)+1));
 		return true;
 	}
 }
@@ -63,7 +63,7 @@ function previousPage(){
 		layer.alert("已经是第一页数据");
 		return false;
 	}else{
-		submitForm("ManagerAjaxGoodsServlet?pageNum=" + (parseInt(currentPage)-1));
+		submitForm("ManagerAjaxUserServlet?pageNum=" + (parseInt(currentPage)-1));
 		return true;
 	}
 }
@@ -74,18 +74,18 @@ function lastPage(){
 		layer.alert("已经是最后一页数据");
 		return false;
 	}else{
-		submitForm("ManagerAjaxGoodsServlet?pageNum=${goods.totalPage}");
+		submitForm("ManagerAjaxUserServlet?pageNum=${users.totalPage}");
 		return true;
 	}
 }
 function query1(){
-	var goods_name = document.getElementById("goods_name").value;
-	var goods_color = document.getElementById("goods_color").value;
-	var kc1 = document.getElementById("kc1").value;
-	var kc2 = document.getElementById("kc2").value;
-	var sell_count1 = document.getElementById("sell_count1").value;
-	var sell_count2 = document.getElementById("sell_count2").value;
-	var actionUrl = "ManagerAjaxGoodsServlet?goods_name="+goods_name+"&goods_color="+goods_color+"&kc1="+kc1+"&kc2="+kc2+"&sell_count1="+sell_count1+"&sell_count2="+sell_count2
+	var user_name = document.getElementById("user_name").value;
+	var user_id = document.getElementById("user_id").value;
+	var sex = document.getElementById("sex").value;
+	var is_valid = document.getElementById("is_valid").value;
+	var createdate1 = document.getElementById("createdate1").value;
+	var createdate2 = document.getElementById("createdate2").value;
+	var actionUrl = "ManagerAjaxUserServlet?user_name="+user_name+"&user_id="+user_id+"&sex="+sex+"&is_valid="+is_valid+"&createdate2="+createdate2+"&createdate1="+createdate1
 	xmlHttp.open("POST", actionUrl, true);
 	xmlHttp.setRequestHeader("Context-Type", "application/x-www-form-urlencoded");
 	// 服务器返回消息
@@ -102,25 +102,25 @@ function query1(){
 </head>
 <body style="font-family: 微软雅黑" bgcolor="#F7F8F9">
 <div style = "text-align: center">
-	<h2>商品信息</h2>
+	<h2>用户信息</h2>
 	<table class="table">
 		<tr>
-			<td>商品名字</td>
-			<td><input id="goods_name" name="goods_name" value="${goods_name}"></td>
-			<td>商品颜色</td>
-			<td><input id="goods_color" name="goods_color" value="${goods_color}"></td>
+			<td>用户id</td>
+			<td><input id="user_id" name="user_id" value="${user_id}"></td>
+			<td>用户名</td>
+			<td><input id="user_name" name="user_name" value="${user_name}"></td>
 		</tr>
 		<tr>
-			<td>库存</td>
-			<td><input id="kc1" name="kc1" value="${kc1}"></td>
-			<td>至</td>
-			<td><input id="kc2" name="kc2" value="${kc2}"></td>
+			<td>性别</td>
+			<td><input id="sex" name="sex" value="${sex}"></td>
+			<td>是否有效</td>
+			<td><input id="is_valid" name="is_valid" value="${is_valid}"></td>
 		</tr>
 		<tr>
-			<td>销量</td>
-			<td><input id="sell_count1" name="sell_count1" value="${sell_count1}"></td>
+			<td>注册时间</td>
+			<td><input id="createdate1" name="createdate1" value="${createdate1}"></td>
 			<td>至</td>
-			<td><input id="sell_count2" name="sell_count2" value="${sell_count2}"></td>
+			<td><input id="createdate2" name="createdate2" value="${createdate2}"></td>
 		</tr>
 		<tr>
 			<td  colspan="4" style="text-align: center;"><input class="button" type="button" value="查询" onclick="query1()"></td>
@@ -128,49 +128,47 @@ function query1(){
 	</table>
 	<table class="table">
 	<tr>
-		<th style="text-align: center;">商品id</th>
-		<th style="text-align: center;">商品名称</th>
-		<th style="text-align: center;">商品介绍</th>
-		<th style="text-align: center;">颜色ID</th>
-		<th style="text-align: center;">商品颜色</th>
-		<th style="text-align: center;">价格</th>
-		<th style="text-align: center;">商品库存</th>
-		<th style="text-align: center;">销量</th>
-		<th style="text-align: center;">是否上架</th>
-		<th style="text-align: center;">信息修改</th>
+		<th style="text-align: center;">用户id</th>
+		<th style="text-align: center;">用户名</th>
+		<th style="text-align: center;">性别</th>
+		<th style="text-align: center;">电话</th>
+		<th style="text-align: center;">注册时间</th>
+		<th style="text-align: center;">是否有效</th>
+		<th style="text-align: center;">邮箱</th>
+		<th style="text-align: center;">备注</th>
+		<th style="text-align: center;">操作</th>
 	</tr>
-		<c:forEach items="${goods.dataList}" var="dd" varStatus="i" >
-			<c:choose>
-			<c:when test="${dd.COUNT<='5'}">
-				<tr style="background: #FF6700">
-			</c:when>
-			<c:otherwise>
-				<tr>
-			</c:otherwise>
-			</c:choose>
-				<td>${dd.GOODS_ID}</td>
-				<td>${dd.NAME}</td>
-				<td>${dd.DETAILE}</td>
-				<td>${dd.PHONE_COLOR_ID }</td>
-				<td>${dd.COLOR}</td>
-				<td>${dd.C_PRICE}</td>
-				<td>${dd.COUNT}</td>
-				<td>${dd.SELL_COUNT}</td>
+		<c:forEach items="${users.dataList}" var="dd" varStatus="i" >
+			<tr>
+			<td>${dd.USER_ID}</td>
+				<td>${dd.USER_NAME}</td>
 				<c:choose>
-					<c:when test="${dd.IS_GROUND=='0'}">
-						<td>已上架</td>
+					<c:when test="${dd.SEX==0}">
+						<td>男</td>
 					</c:when>
 					<c:otherwise>
-						<td>已下架</td>
+						<td>女</td>
 					</c:otherwise>
 				</c:choose>
+				<td>${dd.PHONE_NUMBER }</td>
+				<td>${dd.CREATE_DATE}</td>
+				<c:choose>
+					<c:when test="${dd.IS_VALID==0}">
+						<td>有效</td>
+					</c:when>
+					<c:otherwise>
+						<td>无效</td>
+					</c:otherwise>
+				</c:choose>
+				<td>${dd.EMAIL}</td>
+				<td>${dd.REMARK}</td>
 				<td>
-					<input type = "button" value = "修改" onclick="xiugai('${dd.PHONE_COLOR_ID}')"/>
+					<input type = "button" value = "重置密码" onclick="chongzhi(${dd.USER_ID})"/>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
-	<br> 共${goods.totalRecord }条记录共${goods.totalPage }页&nbsp;&nbsp;当前第${goods.currentPage }页&nbsp;&nbsp;
+	<br> 共${users.totalRecord }条记录共${users.totalPage }页&nbsp;&nbsp;当前第${users.currentPage }页&nbsp;&nbsp;
 	<a style="cursor: pointer;" onclick="firstPage();">首页</a>&nbsp;&nbsp; 
 	<a style="cursor: pointer;" onclick="previousPage();">上一页</a>&nbsp;&nbsp;
 	<a style="cursor: pointer;" onclick="nextPage();">下一页</a>&nbsp;&nbsp; 
@@ -186,9 +184,25 @@ function createXMLHttpRequest(){           // 创建XMLHttpRequest对象
 	}
 }
 createXMLHttpRequest(); 
-function xiugai(goods_color_id){
-	var url = "ManagerGetGoodsById?goods_color_id="+goods_color_id;
-	window.location.href = url;
-}
+function chongzhi(user_id1){
+	var user_id = user_id1;
+	alert(user_id);
+	layer.confirm('是否确认重置此用户的密码', {
+	  btn: ['是','否'] //按钮
+	}, function(){
+	  xmlHttp.open("POST", "ManagerAjaxUserSet?user_id="+user_id+"&setusername=password", true);
+		xmlHttp.setRequestHeader("Context-Type", "application/x-www-form-urlencoded");
+		// 服务器返回消息
+		xmlHttp.onreadystatechange = function (){
+		if(xmlHttp.readyState==4){   
+			if(xmlHttp.status==200){
+				layer.alert("重置成功，密码为123456");
+			}
+		}
+	}
+	xmlHttp.send();
+	});
+	}
+
 </script>
 </html>

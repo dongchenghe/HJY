@@ -20,36 +20,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </style>
 <body>
 	<div class = "dateUpdate" style = "text-align: center;">
-	<h2>商品的详细信息</h2>
+	<h2>增加商品颜色</h2>
 	<!-- target 可以设置为_top或者要挑砖框架的id值 -->
-	<form id="form" action = "ManagerUpdateGoodsServlet" method = "post" target="_top">
+	<form id="form" action = "ManagerAjaxAddGoodsServlet" method = "post" target="_top">
 	<table class="table">
 			<tr>
 				<td>商品id</td>
-				<td><input style="width: 100%" readonly="readonly" name="goods_id" value="${byIdGoods.GOODS_ID }"/></td>
-				<td>颜色ID</td>
-				<td><input style="width: 100%" readonly="readonly"  name="phone_color_id" value="${byIdGoods.PHONE_COLOR_ID }"/></td>
+				<td><input style="width: 100%" name="goods_id1" /></td>
+				<td>添加的颜色名</td>
+				<td><input style="width: 100%" name="color" /></td>
 			</tr>
 			<tr>
-				<td>商品名</td>
-				<td><input style="width: 100%" name="name" value="${byIdGoods.NAME }"/></td>
-				<td>商品价格</td>
-				<td><input style="width: 100%" name="price" value="${byIdGoods.C_PRICE }"/></td>
+				<td>价格</td>
+				<td><input style="width: 100%" name="price" /></td>
+				<td>颜色图片名</td>
+				<td><input style="width: 100%" name="img" /></td>
 			</tr>
 			<tr>
-				<td>颜色名字</td>
-				<td><input style="width: 100%" name="color" value="${byIdGoods.COLOR }"/></td>
-				<td>图片文件夹</td>
-				<td><input style="width: 100%" name="img_src" value="${byIdGoods.IMG_SRC }"/></td>
-			</tr>
-			<tr>
+				<td>计量名</td>
+				<td><input style="width: 100%" name="count_name"/></td>
 				<td>库存</td>
-				<td><input style="width: 100%" name="count" value="${byIdGoods.COUNT }"/></td>
-				<td>是否上架</td>
-				<td><input type="radio" name="is_ground" value="0"/>上架 <input type="radio" name="is_ground" value="1"/>下架</td>
-			</tr>
-			<tr>
-			<td>详细介绍</td><td colspan="3"><input style="width: 100%" name="detaile" value="${byIdGoods.DETAILE }"/></td>
+				<td><input style="width: 100%" name="count"/></td>
 			</tr>
 			<tr>
 				<td colspan="2"> <input type = "button" value = "保存" onclick="baocun()"/> </td>
@@ -61,25 +52,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
 <script type="text/javascript">
 // 设置单选框的默认值为数据库中的数据
-var list = document.getElementsByName("is_ground");
 
-for(var i = 0;i < list.length;i++){
-	if(list[i].value=="${byIdGoods.IS_GROUND}"){
-		list[i].checked=true;
-		break;
-	}
-}
 function baocun(){
-	layer.confirm('是否确认修改', {
+	layer.confirm('是否确认添加此商品', {
 	  btn: ['是','否'] //按钮
 	}, function(){
 			$.ajax({
 		    type: 'post',
-		    url: 'ManagerUpdateGoodsServlet',
+		    url: 'ManagerAjaxAddGoodsServlet?addname=color',
 		    data: $("form").serialize(),
 		    success: function(data) {
-		       layer.alert("修改成功");
-		       location.reload(true);
+		    	if(data='0'){
+		    		layer.alert("添加失败，无此商品id，无法添加商品颜色");
+		    	}else{
+		    		layer.alert("添加成功");
+		    	}
+		       
 		    }
 		});
 	});

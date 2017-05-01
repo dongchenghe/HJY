@@ -33,7 +33,7 @@
   </tag>
   <tag>
     <description>
-        从数据库查询包含关键字的所有用户
+        从数据库查询订单详情
     </description>
     <name>orderteil</name>
     <tag-class>pers.hjy.util.OrderTeilTag</tag-class>
@@ -51,7 +51,28 @@
         <rtexprvalue>true</rtexprvalue>
     </attribute>
   </tag>
+  <tag>
+    <description>
+        从数据库查询包含关键字的所有用户
+    </description>
+    <name>ordermasetdeil</name>
+    <tag-class>pers.hjy.util.OrderMasetDeilTag</tag-class>
+    <!-- 标签体内容是否有 -->
+    <body-content>empty</body-content>
+    <attribute>
+        <description>
+       	订单id
+        </description>
+          <!--属性名 -->
+        <name>order_id</name>
+        <!-- 是否为必要属性 -->
+        <required>false</required>
+        <!-- 能不能用表达式,java表达式，el表达式等 -->
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
 <tag>
+
     <description>
         用户个人信息展现及修改
     </description>

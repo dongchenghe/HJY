@@ -16,8 +16,8 @@ public class UserInterfaceImplDao implements UserInterfaceDao{
 		String sex = user.getSex();
 		String phone = user.getPhoneNumber();
 		String email = user.getEmail();
-		String sql = "insert into t_user(user_name,user_pwd,sex,phone_number,email)"
-				+ "values('"+name+"','"+pwd+"','"+sex+"','"+phone+"','"+email+"')";
+		String sql = "insert into t_user(user_name,user_pwd,sex,phone_number,email,create_date)"
+				+ "values('"+name+"','"+pwd+"','"+sex+"','"+phone+"','"+email+"',sysdate)";
 		// 插入数据
 		return DBUtils.execUpdate(sql);
 	}

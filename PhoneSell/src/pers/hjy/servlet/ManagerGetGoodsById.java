@@ -2,8 +2,6 @@ package pers.hjy.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,37 +12,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pers.hjy.service.AdminInterfaceService;
+import pers.hjy.service.GoodsInterfaceService;
 import pers.hjy.service.impl.AdminInterfaceImplService;
-import pers.hjy.util.Constant;
-import pers.hjy.util.Pager;
+import pers.hjy.service.impl.GoodsInterfaceImplService;
 
 
 
 /**
- * 管理所有的商品的servlet
+ * 通过商品id获取对应的商品的servlet
  */
-@WebServlet("/ManagerGoodsServlet")
-public class ManagerGoodsServlet extends HttpServlet {
+@WebServlet("/ManagerGetGoodsById")
+public class ManagerGetGoodsById extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminInterfaceService service = new AdminInterfaceImplService();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
-		// 获取标识参数
-		Map map = new HashMap<String, Object>();
-		int pageNum = Constant.DEFAULT_PAGE_NUM;
-		String pageNumStr = request.getParameter("pageNum");
-		if(pageNumStr!=null&&!pageNumStr.equals("")){
-			pageNum = Integer.parseInt(pageNumStr);//显示第几页
+		// 通过传参的值
+		String goods_color_id = request.getParameter("goods_color_id");
+		List<Map<String, Object>>  list = service.queryGoodsById(goods_color_id);
+		if(list!=null&&list.size()>0){
+			// 将查询到的商品放入session回话中
+			Map<String, Object> byIdGoods = list.get(0);
+			request.getSession().setAttribute("byIdGoods", byIdGoods);
 		}
-		int pageSize = Constant.DEFAULT_PAGE_SIZE;
-		String pageSizeStr = request.getParameter("pageSize");
-		if(pageSizeStr!=null&&!pageSizeStr.equals("")){
-			pageSize = Integer.parseInt(pageSizeStr);//显示页面显示多少条数据
-		}
-		Pager<Map<String, Object>> goods = service.queryGooodsList(map, pageNum, pageSize);
-		// 获取查询到的订单数据
-		request.getSession().setAttribute("goods", goods);
-		response.sendRedirect("dba/goodInfo.jsp");
+		response.sendRedirect("dba/updateGoods.jsp");
 	}
 
 	/**
@@ -54,4 +45,5 @@ public class ManagerGoodsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

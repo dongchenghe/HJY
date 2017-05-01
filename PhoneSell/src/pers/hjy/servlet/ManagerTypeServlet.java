@@ -21,30 +21,20 @@ import pers.hjy.util.Pager;
 
 
 /**
- * 管理所有的商品的servlet
+ * 管理所有的主页展示的servlet
  */
-@WebServlet("/ManagerGoodsServlet")
-public class ManagerGoodsServlet extends HttpServlet {
+@WebServlet("/ManagerTypeServlet")
+public class ManagerTypeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminInterfaceService service = new AdminInterfaceImplService();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		// 获取标识参数
-		Map map = new HashMap<String, Object>();
-		int pageNum = Constant.DEFAULT_PAGE_NUM;
-		String pageNumStr = request.getParameter("pageNum");
-		if(pageNumStr!=null&&!pageNumStr.equals("")){
-			pageNum = Integer.parseInt(pageNumStr);//显示第几页
-		}
-		int pageSize = Constant.DEFAULT_PAGE_SIZE;
-		String pageSizeStr = request.getParameter("pageSize");
-		if(pageSizeStr!=null&&!pageSizeStr.equals("")){
-			pageSize = Integer.parseInt(pageSizeStr);//显示页面显示多少条数据
-		}
-		Pager<Map<String, Object>> goods = service.queryGooodsList(map, pageNum, pageSize);
-		// 获取查询到的订单数据
-		request.getSession().setAttribute("goods", goods);
-		response.sendRedirect("dba/goodInfo.jsp");
+		String show_id =request.getParameter("show_id");
+		List list = service.queryTypeList(show_id);
+		request.getSession().setAttribute("show_list", list);
+		response.sendRedirect("dba/typeGoodInfo.jsp");
+		
 	}
 
 	/**

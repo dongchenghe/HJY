@@ -21,29 +21,20 @@ import pers.hjy.util.Pager;
 /**
  * 后台订单的servlet
  */
-@WebServlet("/ManagerAjaxOrdersServlet")
-public class ManagerAjaxOrdersServlet extends HttpServlet {
+@WebServlet("/ManagerAjaxUserServlet")
+public class ManagerAjaxUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminInterfaceService service = new AdminInterfaceImplService(); 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		// 获取标识参数
 		Map map = new HashMap<String, Object>();
-		String order_state = request.getParameter("order_state");
 		String user_id = request.getParameter("user_id");
-		String order_id = request.getParameter("order_id");
-		String create_date1 = request.getParameter("create_date1");
-		String create_date2 = request.getParameter("create_date2");
-		String kddh = request.getParameter("kddh");
-		if(order_state!=null){
-			map.put("order_state", order_state);
-			request.getSession().setAttribute("order_state", order_state);
-		}else{
-			String test = (String) request.getSession().getAttribute("order_state");
-			if(test!=null && !test.trim().equals("")){
-				map.put("order_state", test);
-			}
-		}
+		String user_name = request.getParameter("user_name");
+		String sex = request.getParameter("sex");
+		String is_valid = request.getParameter("is_valid");
+		String createdate1 = request.getParameter("createdate1");
+		String createdate2 = request.getParameter("createdate2");
 		if(user_id!=null){
 			map.put("user_id", user_id);
 			request.getSession().setAttribute("user_id", user_id);
@@ -53,40 +44,49 @@ public class ManagerAjaxOrdersServlet extends HttpServlet {
 				map.put("user_id", test);
 			}
 		}
-		if(order_id!=null){
-			map.put("order_id", order_id);
-			request.getSession().setAttribute("order_id", order_id);
+		if(user_name!=null){
+			map.put("user_name", user_name);
+			request.getSession().setAttribute("user_name", user_name);
 		}else{
-			String test = (String) request.getSession().getAttribute("order_id");
+			String test = (String) request.getSession().getAttribute("user_name");
 			if(test!=null && !test.trim().equals("")){
-				map.put("order_id", test);
+				map.put("user_name", test);
 			}
 		}
-		if(create_date1!=null){
-			map.put("create_date1", create_date1);
-			request.getSession().setAttribute("create_date1", create_date1);
+		if(sex!=null){
+			map.put("sex", sex);
+			request.getSession().setAttribute("sex", sex);
 		}else{
-			String test = (String) request.getSession().getAttribute("create_date1");
+			String test = (String) request.getSession().getAttribute("sex");
 			if(test!=null && !test.trim().equals("")){
-				map.put("create_date1", test);
+				map.put("sex", test);
 			}
 		}
-		if(create_date2!=null){
-			map.put("create_date2", create_date2);
-			request.getSession().setAttribute("create_date2", create_date2);
+		if(is_valid!=null){
+			map.put("is_valid", is_valid);
+			request.getSession().setAttribute("is_valid", is_valid);
 		}else{
-			String test = (String) request.getSession().getAttribute("create_date2");
+			String test = (String) request.getSession().getAttribute("is_valid");
 			if(test!=null && !test.trim().equals("")){
-				map.put("create_date2", test);
+				map.put("is_valid", test);
 			}
 		}
-		if(kddh!=null){
-			map.put("kddh", kddh);
-			request.getSession().setAttribute("kddh", kddh);
+		if(createdate1!=null){
+			map.put("createdate1", createdate1);
+			request.getSession().setAttribute("createdate1", createdate1);
 		}else{
-			String test = (String) request.getSession().getAttribute("kddh");
+			String test = (String) request.getSession().getAttribute("createdate1");
 			if(test!=null && !test.trim().equals("")){
-				map.put("kddh", test);
+				map.put("createdate1", test);
+			}
+		}
+		if(createdate2!=null){
+			map.put("sell_count2", createdate2);
+			request.getSession().setAttribute("createdate2", createdate2);
+		}else{
+			String test = (String) request.getSession().getAttribute("createdate2");
+			if(test!=null && !test.trim().equals("")){
+				map.put("createdate2", test);
 			}
 		}
 		int pageNum = Constant.DEFAULT_PAGE_NUM;
@@ -99,9 +99,9 @@ public class ManagerAjaxOrdersServlet extends HttpServlet {
 		if(pageSizeStr!=null&&!pageSizeStr.equals("")){
 			pageSize = Integer.parseInt(pageSizeStr);//显示页面显示多少条数据
 		}
-		Pager<Map<String, Object>> orders = service.queryOrderList(map, pageNum, pageSize);
+		Pager<Map<String, Object>> users = service.queryUserList(map, pageNum, pageSize);
 		// 获取查询到的订单数据
-		request.getSession().setAttribute("orders", orders);
+		request.getSession().setAttribute("users", users);
 	}
 
 	/**

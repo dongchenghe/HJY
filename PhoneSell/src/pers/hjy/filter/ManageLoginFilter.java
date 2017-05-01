@@ -54,7 +54,7 @@ public class ManageLoginFilter implements Filter {
 			
 		}else{	
 			Manager manager = (Manager)session.getAttribute("manager");
-			if(manager==null){
+			if(manager==null){	
 				((HttpServletResponse)response).sendRedirect("errorPage2.jsp");
 			}
 		}

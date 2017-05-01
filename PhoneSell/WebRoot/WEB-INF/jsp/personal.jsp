@@ -132,7 +132,7 @@ function nextPage(){
 		layer.alert("已经是最后一页数据");
 		return false;
 	}else{
-		submitForm("AjaxUserOrderServlet?pageNum=" + (currentPage+1));
+		submitForm("AjaxUserOrderServlet?pageNum=" + (parseInt(currentPage)+1));
 		return true;
 	}
 }
@@ -143,7 +143,7 @@ function previousPage(){
 		layer.alert("已经是第一页数据");
 		return false;
 	}else{
-		submitForm("AjaxUserOrderServlet?pageNum=" + (currentPage-1));
+		submitForm("AjaxUserOrderServlet?pageNum=" + (parseInt(currentPage)-1));
 		return true;
 	}
 }

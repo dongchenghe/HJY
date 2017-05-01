@@ -158,8 +158,8 @@ H1 a {
         </table>
         <ul class="MM">
           <li><a href="ManagerGoodsServlet?checked=all" target="rightframe">商品查询</a></li>
-          <li><a href="http://www.865171.cn" target="rightframe">增加商品</a></li>
-          <li><a href="ManagerGoodsServlet?checked=less" target="rightframe" style="color: red">进货管理</a></li>
+          <li><a href="dba/addGoods.jsp" target="rightframe">增加商品</a></li>
+          <li><a href="dba/addGoodsColor.jsp" target="rightframe">添加商品颜色</a></li>
         </ul>
       </div>
       <h1 class="type"><a href="javascript:void(0)">订单管理</a></h1>
@@ -187,10 +187,16 @@ H1 a {
           </tr>
         </table>
         <ul class="MM">
-		  <li><a href="IndexServlet?checked=all" target = "rightframe">修改商品标签</a></li>
-          <li><a href="IndexServlet?checked=boutique" target="rightframe">精品推荐</a></li>
-          <li><a href="IndexServlet?checked=new" target="rightframe">新品上市</a></li>
-          <li><a href="IndexServlet?checked=hot" target="rightframe">热销商品</a></li>
+		  <li><a href="ManagerTypeServlet?show_id=0" target = "rightframe">新品上市</a></li>
+          <li><a href="ManagerTypeServlet?show_id=1" target = "rightframe">热销商品</a></li>
+          <li><a href="ManagerTypeServlet?show_id=2" target = "rightframe">推荐商品</a></li>
+          <li><a href="ManagerTypeServlet?show_id=3" target = "rightframe">opp手机</a></li>
+          <li><a href="ManagerTypeServlet?show_id=4" target = "rightframe">vivo手机</a></li>
+          <li><a href="ManagerTypeServlet?show_id=5" target = "rightframe">小米手机</a></li>
+          <li><a href="ManagerTypeServlet?show_id=6" target = "rightframe">华为手机</a></li>
+          <li><a href="ManagerTypeServlet?show_id=7" target = "rightframe">苹果手机</a></li>
+          <li><a href="ManagerTypeServlet?show_id=8" target = "rightframe">移动电源</a></li>
+          <li><a href="ManagerTypeServlet?show_id=9" target = "rightframe">耳机。电源 </a></li>
         </ul>
       </div>
       <h1 class="type"><a href="javascript:void(0)">注册用户管理</a></h1>
@@ -201,8 +207,9 @@ H1 a {
           </tr>
         </table>
         <ul class="MM">
-          <li><a href="CheckAllUsersServlet?pwd=" target = "rightframe">查看所有用户</a></li>
-          <li><a href="CheckAllUsersServlet?pwd=123456" target="rightframe">密码重置</a></li>
+          <li><a href="ManagerUserServlet" target = "rightframe">查看所有用户</a></li>
+          <li><a href="ManagerUserServlet?setname=password" target="rightframe">密码重置</a></li>
+          <li><a href="ManagerUserServlet?setname=is_valid" target="rightframe">用户冻结</a></li>
         </ul>
       </div>
     </div>

@@ -17,12 +17,17 @@ public interface AdminInterfaceService {
 	Pager<Map<String, Object>> queryOrderList(Map map, int pageNum, int pageSize);
 	int updateOderState(String order_id,String state,String admin_id);
 	/*商品有关*/
-	int updateType(String position_name,int id);
-	List<Map<String,Object>> queryGoodsList(Map map);
-	List<Map<String,Object>> getAllTypeGooods();
+	List<Map<String,Object>> queryGoodsById(String goods_color_id);
+	int insertGoodsAndColor(Map map);
+	int insertGoodsColor(String goods_id ,String color,String count,String price,String img );
+	int updateGoods(String table,String filed,String value,String idname,String id);
 	Pager<Map<String, Object>> queryGooodsList(Map map, int pageNum, int pageSize);
 	/*用户相关*/
 	ArrayList<User> queryUsersList(Map map);
 	Pager<Map<String, Object>> queryUserList(Map map, int pageNum, int pageSize);
-	int updatePwd(String pwd,int user_id);
+	int updatePwd(String pwd,String user_id);
+	int updateUser(String filed,String value,String user_id);
+	/*商品展示有关*/
+	List<Map<String,Object>> queryTypeList(String type);
+	int updatTypeById(String goods_id,String sequen,String goods_show_id);
 }

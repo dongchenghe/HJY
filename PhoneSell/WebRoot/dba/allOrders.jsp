@@ -54,7 +54,7 @@ function nextPage(){
 		layer.alert("已经是最后一页数据");
 		return false;
 	}else{
-		submitForm("ManagerAjaxOrdersServlet?pageNum=" + (currentPage+1));
+		submitForm("ManagerAjaxOrdersServlet?pageNum=" + (parseInt(currentPage)+1));
 		return true;
 	}
 }
@@ -65,7 +65,7 @@ function previousPage(){
 		layer.alert("已经是第一页数据");
 		return false;
 	}else{
-		submitForm("ManagerAjaxOrdersServlet?pageNum=" + (currentPage-1));
+		submitForm("ManagerAjaxOrdersServlet?pageNum=" + (parseInt(currentPage)-1));
 		return true;
 	}
 }
@@ -169,11 +169,11 @@ function query1(){
 					</c:when>
 					<c:when test="${dd.ORDER_STATE=='1'}">
 						<td>已付款</td>
-						<td><input type = "button" value = "确认" onclick = "javascript:setorder('${dd.ORDER_ID}','2')"/></td>
+						<td><input type = "button" value = "确认" onclick = "setorder('${dd.ORDER_ID}','2')"/></td>
 					</c:when>
 					<c:when test="${dd.ORDER_STATE=='2'}">
 						<td>已确定</td>
-						<td><input type = "button" value = "发货" onclick = "javascript:setorder('${dd.ORDER_ID}','3')"/></td>
+						<td><input type = "button" value = "发货" onclick = "setorder('${dd.ORDER_ID}','3')"/></td>
 					</c:when>
 					<c:when test="${dd.ORDER_STATE=='3'}">
 						<td>已发货</td>
@@ -197,7 +197,7 @@ function query1(){
 					</c:otherwise>
 				</c:choose>
 				<td>
-					<input type = "button" value = "查看"/>
+					<input type = "button" value = "查看" onclick="chakan('<show:ordermasetdeil order_id="${dd.ORDER_ID }"/>')"/>
 				</td>
 			</tr>
 		</c:forEach>
@@ -220,11 +220,15 @@ function createXMLHttpRequest(){           // 创建XMLHttpRequest对象
 createXMLHttpRequest(); 
 function setorder(order,setname1){
 	var order_id = order;
-	var sertname = setname1;
-	xmlHttp.open("POST", "ManagerAjaxOrderSet?order_id="+order_id+"&setname="+sertname, true);
-	xmlHttp.setRequestHeader("Context-Type", "application/x-www-form-urlencoded");
-	// 服务器返回消息
-	xmlHttp.onreadystatechange = function (){
+	var setname = setname1;
+	if(setname=='2'){
+		layer.confirm('是否确认此订单', {
+	  btn: ['是','否'] //按钮
+	}, function(){
+	  xmlHttp.open("POST", "ManagerAjaxOrderSet?order_id="+order_id+"&setname="+setname, true);
+		xmlHttp.setRequestHeader("Context-Type", "application/x-www-form-urlencoded");
+		// 服务器返回消息
+		xmlHttp.onreadystatechange = function (){
 		if(xmlHttp.readyState==4){   
 			if(xmlHttp.status==200){
 				location.reload(true);
@@ -232,6 +236,34 @@ function setorder(order,setname1){
 		}
 	}
 	xmlHttp.send();
+	});
+	}
+	if(setname=='3'){
+		layer.confirm('是否确认此订单已经发货', {
+	  btn: ['是','否'] //按钮
+	}, function(){
+	  xmlHttp.open("POST", "ManagerAjaxOrderSet?order_id="+order_id+"&setname="+setname, true);
+		xmlHttp.setRequestHeader("Context-Type", "application/x-www-form-urlencoded");
+		// 服务器返回消息
+		xmlHttp.onreadystatechange = function (){
+		if(xmlHttp.readyState==4){   
+			if(xmlHttp.status==200){
+				location.reload(true);
+			}
+		}
+	}
+	xmlHttp.send();
+	});
+	}
+	
+}
+function chakan(order_id){
+	layer.open({
+	  type: 1,
+	  skin: 'layui-layer-rim', //加上边框
+	  area: ['420px', '240px'], //宽高
+	  content: order_id
+	});
 }
 </script>
 </html>
