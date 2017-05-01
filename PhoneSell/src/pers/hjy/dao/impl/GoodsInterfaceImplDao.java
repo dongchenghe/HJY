@@ -14,10 +14,7 @@ public class GoodsInterfaceImplDao implements GoodsInterfaceDao {
 	//查询展示的商品
 		public  ArrayList<Goods> getGoodsByShow(int showId){
 			ArrayList<Goods> goodsArr = new ArrayList<Goods>();
-			String sql="SELECT * FROM goods WHERE goods_id IN(SELECT goods_id FROM goods_show WHERE SHOW_ID='"+showId+"')";
-			if(showId==3){
-				sql="SELECT * FROM goods";
-			}
+			String sql="select gs.goods_show_id,gs.show_id,gs.sequen,gs.show_name, g.* from goods_show gs left join goods g on g.goods_id=gs.goods_id where gs.show_id='"+showId+"' order by sequen;";
 			List<Map<String, Object>> list = DBUtils.execQuery(sql);
 			if(list!=null&&list.size()>0){
 				for(int i=0;i<list.size();i++){
